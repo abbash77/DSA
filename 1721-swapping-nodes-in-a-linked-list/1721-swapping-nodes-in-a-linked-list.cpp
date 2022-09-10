@@ -10,33 +10,18 @@
  */
 class Solution {
 public:
-    int len(ListNode* head){
-        ListNode* temp=head;
-        int c=0;
-        while(temp!=NULL){
-            c++;
-            temp=temp->next;
-        }
-        return c;
-    }
     ListNode* swapNodes(ListNode* head, int k) {
-        int s=1;
-        ListNode* a=head;
-        ListNode* b=head;
-        int leni=len(head);
-        int z=leni-k;
-        while(s<k){
-            s++;
-            a=a->next;
-        }
-        s=1;
-        while(s<=z){
-            s++;
-            b=b->next;
-        }
-        swap(a->val,b->val);
-        return head;
-        
+        ListNode* left=head, *right=head, *curr=head;
+    int i=1;
+    
+    while(curr!=NULL){
+        if(i<k) left=left->next;
+        if(i>k) right=right->next;
+        curr=curr->next;
+        i++;
+    }
+    swap(left->val,right->val);
+    return head;
         
     }
 };
