@@ -8,6 +8,5 @@ public:
             if(s.find(i)==s.end()) return i;
             i++;
         }
-        return 1;
     }
 };
