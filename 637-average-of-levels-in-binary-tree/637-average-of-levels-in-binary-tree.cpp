@@ -11,29 +11,23 @@
  */
 class Solution {
 public:
-    void helper(TreeNode* root,int level, map<int,vector<int>>& m){
-        if(root==NULL){
-            return;
-        }
-        m[level].push_back(root->val);
-        helper(root->left,level+1,m);
-        helper(root->right,level+1,m);
-        
-    }
-    vector<double> averageOfLevels(TreeNode* root) {
-       map<int,vector<int>> m;
-        int level=0;
-        vector<double> ans;
-        helper(root,level,m);
-        for(auto i:m){
-            double sum=0;
-            for(int j=0;j<i.second.size();j++){
-                sum+=i.second[j];
+   vector<double> averageOfLevels(TreeNode* root) {
+        double x=0;
+        vector<double>v;
+        queue<TreeNode *>q;
+        q.push(root);
+        while(!q.empty()){
+            int size=q.size();
+            for(int i=0;i<size;i++){
+                TreeNode *temp=q.front();
+                q.pop();
+                if(temp->left) q.push(temp->left);
+                if(temp->right) q.push(temp->right);
+                x+=temp->val;
             }
-            sum=sum/i.second.size();
-            ans.push_back(sum);
+            v.push_back(x/size);
+            x=0;
         }
-        return ans;
-        
-    }
+        return v;
+   }
 };
