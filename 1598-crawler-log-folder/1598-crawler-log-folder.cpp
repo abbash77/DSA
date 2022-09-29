@@ -15,11 +15,6 @@ public:
                 s.push(logs[i]);
             }
         }
-        int i=0;
-        while(!s.empty()){
-            s.pop();
-            i++;
-        }
-        return i;
+        return s.size();
     }
 };
