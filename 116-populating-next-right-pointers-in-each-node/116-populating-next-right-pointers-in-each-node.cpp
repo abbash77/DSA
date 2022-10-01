@@ -18,34 +18,24 @@ public:
 
 class Solution {
 public:
-    int level(Node* root){
-        int lev=0;
-        while(root->left!=NULL){
-            root=root->left;
-            lev++;
-        }
-        return lev;
-    }
-    void helper(Node*& root,map<int,Node*> &m,int level){
-        if(root==NULL){
+   void nextRight(Node* r1, Node* r2){
+        r1->next = r2;
+        r2->next = NULL;
+        
+        if(r1->left){
+            nextRight(r1->left,r1->right);
+            nextRight(r1->right, r2->left);
+            nextRight(r2->left, r2->right);
             return;
         }
-        helper(root->right,m,level+1);
-        root->next=m[level];
-        m[level]=root;
-        helper(root->left,m,level+1);
+        else
+            return;
     }
     Node* connect(Node* root) {
-        if(root==NULL){
-            return NULL;
+        if(root){
+            nextRight(root, root);
         }
-        int lev=level(root);
-        map<int,Node*> m;
-        for(int i=0;i<=lev;i++){
-            m[i]=NULL;
-        }
-        helper(root,m,0);
+         
         return root;
-        
     }
 };
