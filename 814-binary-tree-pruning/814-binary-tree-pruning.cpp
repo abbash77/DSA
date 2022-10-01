@@ -11,21 +11,18 @@
  */
 class Solution {
 public:
-    TreeNode* helper(TreeNode*& root){
+    TreeNode* pruneTree(TreeNode* root) {
         if(root==NULL){
             return NULL;
         }
         if(root->left==NULL&&root->right==NULL&&root->val==0){
             return NULL;
         }
-        root->left=helper(root->left);
-        root->right=helper(root->right);
+        root->left=pruneTree(root->left);
+        root->right=pruneTree(root->right);
         if(root->left==NULL&&root->right==NULL&&root->val==0){
             return NULL;
         }
         return root;
-    }
-    TreeNode* pruneTree(TreeNode* root) {
-        return helper(root);
     }
 };
