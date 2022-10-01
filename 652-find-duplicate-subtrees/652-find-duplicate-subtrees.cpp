@@ -20,7 +20,7 @@ public:
         string left = solve(root->left) ;
         string right = solve(root->right) ;
         
-        string code = to_string(root->val) + " " + left + " " + right ;
+        string code = to_string(root->val)  +" " +left+ " "+ right ;
         if(dp[code] == 1) ans.push_back(root) ;
         dp[code]++ ;
         
