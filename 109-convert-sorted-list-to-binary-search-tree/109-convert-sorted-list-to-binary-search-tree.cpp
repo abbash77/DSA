@@ -29,12 +29,12 @@ public:
            TreeNode* root=new TreeNode(head->val);
            return root;
        }
-       if(head->next->next==NULL){
-           TreeNode* r=new TreeNode(head->val);
-           TreeNode* a=new TreeNode(head->next->val);
-           a->left=r;
-           return a;
-       }
+       // if(head->next->next==NULL){
+       //     TreeNode* r=new TreeNode(head->val);
+       //     TreeNode* a=new TreeNode(head->next->val);
+       //     a->left=r;
+       //     return a;
+       // }
        ListNode* slow=head;
        ListNode* fast=head;
        ListNode* prev=NULL;
