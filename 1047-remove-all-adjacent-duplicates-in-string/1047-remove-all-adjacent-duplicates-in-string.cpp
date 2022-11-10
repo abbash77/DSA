@@ -15,23 +15,9 @@ public:
             s1+=st.top();
             st.pop();
         }
-//         stack<char> st1;
-//         for(int i=0;i<s1.length();i++){
-//             st1.push(s1[i]);
-            
-//         }
-//         string s2="";
-//         while(!st1.empty()){
-//             s2+=st1.top();
-//             st1.pop();
-//         }
-//         return s2;
         for(int i=0;i<s1.length()/2;i++){
             swap(s1[i],s1[s1.length()-1-i]);
         }
-        return s1;
-        
-        
-        
+        return s1; 
     }
 };
