@@ -7,25 +7,10 @@ public:
         }
         int ans=0;
         for(auto i:m){
-            if(i.second==2||i.second==3){
-                ans++;
-                i.second=0;
-            }
-            else if(i.second==1){
-                return -1;
-            }
-            else if(i.second>3){
-                while(i.second!=0){
-                    if(i.second%3==0){
-                        i.second=i.second-3;
-                        ans++;
-                    }
-                    else{
-                        i.second=i.second-2;
-                        ans++;
-                    }
-                }
-            }
+            int freq=i.second;
+            if(freq == 1) return -1;
+            ans += (freq % 3 == 0) ? freq/3 : freq/3 + 1;
+            
         }
         return ans;
     }
