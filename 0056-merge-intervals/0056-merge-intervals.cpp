@@ -2,23 +2,27 @@ class Solution {
 public:
     vector<vector<int>> merge(vector<vector<int>>& intervals) {
         sort(intervals.begin(),intervals.end());
-        pair<int,int> work;
+        pair<int,int> p;
+        vector<int> v;
         vector<vector<int>> ans;
-        work={intervals[0][0],intervals[0][1]};
-        for(int i=0;i<intervals.size();i++){
-            if(intervals[i][0]<=work.second){
-                work.second=max(work.second,intervals[i][1]);
-            }
+        p.first=intervals[0][0];
+        p.second=intervals[0][1];
+        for(int i=1;i<intervals.size();i++){
+             if(p.second>=intervals[i][0]){
+                p.second=max(p.second,intervals[i][1]); 
+             }
             else{
-                vector<int> v{work.first,work.second};
+                v.push_back(p.first);
+                v.push_back(p.second);
                 ans.push_back(v);
-                work.first=intervals[i][0];
-                work.second=intervals[i][1];
+                v.clear();
+                p.first=intervals[i][0];
+                p.second=intervals[i][1];
             }
         }
-        vector<int> v{work.first,work.second};
+        v.push_back(p.first);
+        v.push_back(p.second);
         ans.push_back(v);
-        
         return ans;
     }
 };
