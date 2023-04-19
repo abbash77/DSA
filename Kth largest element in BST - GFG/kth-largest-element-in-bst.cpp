@@ -97,20 +97,26 @@ struct Node {
 class Solution
 {
     public:
-   void largest(Node* root,int k,vector<int> &v){
+    int i=0;
+   void largest(Node* root,int k,int &n){
+       
         if(root==NULL){
             return;
         }
-        largest(root->left,k,v);
-        v.push_back(root->data);
-        largest(root->right,k,v);
+        largest(root->right,k,n);
+        i++;
+        if(i==k){
+            n=root->data;
+        }
+        largest(root->left,k,n);
+        
     }
     int kthLargest(Node *root, int K)
     {
         //Your code here
-        vector<int> v;
-        largest(root,K,v);
-        return v[v.size()-K];
+        int n;
+        largest(root,K,n);
+        return n;
     }
 };
 
