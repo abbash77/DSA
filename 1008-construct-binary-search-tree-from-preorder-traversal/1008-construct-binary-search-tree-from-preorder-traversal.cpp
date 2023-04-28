@@ -11,20 +11,21 @@
  */
 class Solution {
 public:
-    TreeNode* helper(vector<int>& preorder,int min,int max,int& a){
-        if(a>=preorder.size()){
+    TreeNode* create(vector<int>& preorder,int mini,int maxi,int &index){
+        if(index>=preorder.size()){
             return NULL;
         }
-        if(preorder[a]>max||preorder[a]<min){
+        if(preorder[index]>=maxi||preorder[index]<=mini){
             return NULL;
         }
-        TreeNode* root=new TreeNode(preorder[a++]);
-        root->left=helper(preorder,min,root->val,a);
-        root->right=helper(preorder,root->val,max,a);
+        TreeNode* root=new TreeNode(preorder[index]);
+        index++;
+        root->left=create(preorder,mini,root->val,index);
+        root->right=create(preorder,root->val,maxi,index);
         return root;
     }
     TreeNode* bstFromPreorder(vector<int>& preorder) {
-        int a=0;
-        return helper(preorder,INT_MIN,INT_MAX,a);
+        int index=0;
+        return create(preorder,INT_MIN,INT_MAX,index);
     }
 };
