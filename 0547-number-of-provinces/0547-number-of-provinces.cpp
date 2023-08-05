@@ -4,7 +4,7 @@ public:
         visited[node]=true;
         queue<int> q;
         q.push(node);
-        cnt++;
+        
         while(!q.empty()){
             int front=q.front();
             q.pop();
@@ -23,6 +23,7 @@ public:
         int cnt=0;
         for(int i=0;i<n;i++){
             if(!visited[i]){
+                cnt++;
                 bfs(visited,isConnected,i,cnt);
             }
         }
