@@ -4,20 +4,22 @@ public:
         int s=0;
         int e=nums.size()-1;
         int mid=(s+e)/2;
-        while(s<e){
+        int ans=-1;
+        while(s<=e){
             if(nums[mid]>=nums[0]){
                 s=mid+1;
             }
             else{
-                e=mid;
+                ans=mid;
+                e=mid-1;
             }
             mid=(e+s)/2;
-            if(e==s&&nums[s]>nums[0]){
-                s=0;
-                break;
-            }
         }
-         return s;
+        cout<<ans;
+        if(ans==-1){
+            return 0;
+        }
+         return ans;
     }
     int binSearch(vector<int>& nums, int target,int s,int e){
         int mid=(s+e)/2;
