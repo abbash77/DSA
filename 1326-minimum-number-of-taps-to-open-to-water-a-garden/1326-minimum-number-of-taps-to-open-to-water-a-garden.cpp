@@ -1,6 +1,6 @@
 class Solution {
 public:
-    map<int,map<int,int>> dp;
+    unordered_map<int,unordered_map<int,int>> dp;
     int helper(int idx,int prev,vector<vector<int>> &intervals){
         if(prev>=intervals.size()-1) return 0;
         if(idx==intervals.size()) return 1e9;
