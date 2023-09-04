@@ -1,19 +1,23 @@
 class Solution {
 public:
     int addRungs(vector<int>& rungs, int dist) {
-        int ans=0;
+        int prev=0;
+        int count=0;
         for(int i=0;i<rungs.size();i++){
-            if(i==0){
-                if(rungs[i]-0>dist){
-                    ans+=(rungs[i]-1)/dist;  
-                }
+            if(rungs[i]-prev<=dist){
+                prev=rungs[i];
             }
             else{
-               if(rungs[i]-rungs[i-1]>dist){
-                    ans+=(rungs[i]-rungs[i-1]-1)/dist;  
-                } 
+                if((rungs[i]-prev)% dist==0){
+                    count+=((rungs[i]-prev)/dist)-1;
+                    prev=rungs[i];
+                }
+                else{
+                    count+=(rungs[i]-prev)/dist;
+                    prev=rungs[i];
+                }
             }
         }
-        return ans;
+        return count;
     }
 };
