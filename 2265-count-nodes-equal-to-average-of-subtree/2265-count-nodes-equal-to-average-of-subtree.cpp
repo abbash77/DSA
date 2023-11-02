@@ -13,12 +13,12 @@ class Solution {
 public:
     pair<double,int> valueSum(TreeNode* root,int &ans){
         if(root==NULL) return {0,0};
-	auto left=valueSum(root->left,ans);
-	auto right=valueSum(root->right,ans);
-	int sum=(left.first+right.first+root->val);
-	int n=(left.second+right.second+1);        
-	ans+=((sum/n)==root->val);
-	return {sum,n};
+	    auto left=valueSum(root->left,ans);
+	    auto right=valueSum(root->right,ans);
+	    int sum=(left.first+right.first+root->val);
+	    int n=(left.second+right.second+1);        
+	    ans+=((sum/n)==root->val);
+	    return {sum,n};
     }
     int averageOfSubtree(TreeNode* root) {
         int ans=0;
