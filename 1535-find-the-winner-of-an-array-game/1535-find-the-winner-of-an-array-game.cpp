@@ -1,45 +1,29 @@
 class Solution {
 public:
     int getWinner(vector<int>& arr, int k) {
-        int a=arr[0];
-        int b=arr[1];
-        queue<int> q;
-        int cnt=0;
-        int winner=-1;
-        for(int i=2;i<arr.size();i++){
-            q.push(arr[i]);
+        if (k == 1) {
+            return std::max(arr[0], arr[1]);
         }
-        while(true){
-            if(a>b){
-                q.push(b);
-                b=q.front();
-                q.pop();
-                if(winner==a){
-                    cnt++;
-                }
-                else{
-                    cnt=1;
-                    winner=a;
-                }
-                
+        if (k >= arr.size()) {
+            return *std::max_element(arr.begin(), arr.end());
+        }
+
+        int current_winner = arr[0];
+        int consecutive_wins = 0;
+
+        for (int i = 1; i < arr.size(); ++i) {
+            if (current_winner > arr[i]) {
+                consecutive_wins++;
+            } else {
+                current_winner = arr[i];
+                consecutive_wins = 1;
             }
-            else{
-                a=b;
-                q.push(a);
-                b=q.front();
-                q.pop();
-                if(winner==a){
-                    cnt++;
-                }
-                else{
-                    cnt=1;
-                    winner=a;
-                }
-            }
-            if(cnt>=k||cnt>=arr.size()){
-                break;
+
+            if (consecutive_wins == k) {
+                return current_winner;
             }
         }
-        return winner;
+
+        return current_winner;
     }
 };
