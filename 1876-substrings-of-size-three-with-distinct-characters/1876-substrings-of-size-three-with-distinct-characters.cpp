@@ -30,18 +30,15 @@ public:
                     j++;
                     
                 }
-                
-                else if(mp.size()<(j-i+1)) // // if all the characters in window are not unique
-                {
-                    while(mp.size()<(j-i+1) && i<=j) // Removing the ith character from window until we have removed all the duplicate characters
-                    {
-                        mp[s[i]]--;
-                        if(mp[s[i]]==0)
-                            mp.erase(s[i]);
-                        i++;
-                    }
+                else{
+                    mp[s[i]]--; // Before sliding the window make sure to decrease the count of starting index character of window 
+                    if(mp[s[i]]==0) 
+                        mp.erase(s[i]);
+                    
+					// Sliding the window
+                    i++; 
                     j++;
-                }                
+                }
             }
         }
         
