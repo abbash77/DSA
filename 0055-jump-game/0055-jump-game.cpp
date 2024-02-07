@@ -1,19 +1,26 @@
 class Solution {
 public:
-    
+   int func(int i,vector<int>&nums,vector<int> &dp){
+       if(i==nums.size()-1){
+           return 1;
+       }
+       if(i>=nums.size()){
+           return 0;
+       }
+       if(dp[i]!=-1){
+           return dp[i];
+       }
+       
+       for(int j=1;j<=nums[i];j++){
+          if(func(i+j,nums,dp)){
+              return dp[i]=1;
+          }
+       }
+       return dp[i]=0;
+   }
     bool canJump(vector<int>& nums) {
-        int n=nums.size();
-        vector<int> dp(n,0);
-        dp[0]=true;
-        
-        for(int i=1;i<n;i++){
-             for(int j=i-1;j>=0;j--){
-                 if(dp[j] && j+nums[j]>=i){
-                     dp[i]=true;
-                     break;
-                 }       
-             }           
-        }
-        return dp[n-1];
+        vector<int> dp(nums.size(),-1);
+       int a= func(0,nums,dp);
+        return a;
     }
 };
