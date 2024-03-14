@@ -3,7 +3,7 @@ class Solution {
         int N = A.size(), i = 0, j = 0, cnt = 0, ans = 0;
         while (j < N) {
             cnt += A[j++];
-            while (i < j && cnt > goal) cnt -= A[i++];
+            while ( i<j&&cnt > goal) cnt -= A[i++];
             ans += j - i+1;
         }
         return ans;
